@@ -87,38 +87,38 @@ export class ApiClient {
     }
   }
 
-  async getAds() {
+  async getEvents() {
     try {
-      const response = await this.apiCall("get", url + "ads");
+      const response = await this.apiCall("get", url + "events");
       return response;
     } catch (error) {
       throw error;
     }
   }
 
-  async addAd(title, description, price) {
+  async addEvent(title, description, price) {
     try {
       const numericPrice = Number(price);
       if (isNaN(numericPrice)) {
         throw new Error('Price must be a valid number');
       }
-      return this.apiCall("post", url + "ads", { 
+      return this.apiCall("post", url + "events", { 
         title, 
         description, 
         price: numericPrice 
       });
     } catch (error) {
-      console.error('addAd error:', error.response || error); // Debug log
+      console.error('addEvent error:', error.response || error); // Debug log
       throw error;
     }
   }
 
-  async removeAd(id) {
-    return this.apiCall("delete", `${url}ads/${id}`);
+  async removeEvent(id) {
+    return this.apiCall("delete", `${url}events/${id}`);
   }
 
-  async updateAd(id, title, description, price) {
-    return this.apiCall("put", `${url}ads/${id}`, { title, description, price });
+  async updateEvent(id, title, description, price) {
+    return this.apiCall("put", `${url}events/${id}`, { title, description, price });
   }
 
   async login(email, password) {
