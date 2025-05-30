@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { ApiClient } from '../../apiClient/apiClient';
+import Link from 'next/link';
 
 export default function EventsPage() {
   const [events, setEvents] = useState([]);
@@ -55,7 +56,11 @@ export default function EventsPage() {
   return (
     <div className="max-w-7xl mx-auto p-6">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Browse Events</h1>
-      
+                <Link href="/create">
+            <button className="text-fuchsia-600 py-2 px-6 font-light hover:text-fuchsia-700  transition-colors duration-200 border-b border-fuchsia-600/30 hover:border-fuchsia-600 ">
+              Create New Event
+            </button>
+          </Link>
       {events.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-gray-600 dark:text-gray-400 text-lg">No events found.</p>
@@ -81,6 +86,12 @@ export default function EventsPage() {
                   <span className="text-sm text-gray-500 dark:text-gray-400">
                     {new Date(event.createdAt).toLocaleDateString()}
                   </span>
+                  <form action="/api/delete" method="DELETE">
+                  <span className="text-sm text-red-400 dark:text-red-400">
+                    <input type="hidden" name="eventId" value={event.id} />
+                    <button className="bg-amber-300">Delete</button>
+                  </span>
+                  </form>
                 </div>
               </div>
               <div className="px-6 py-4 bg-gray-50 dark:bg-gray-700 border-t border-gray-100 dark:border-gray-600">
