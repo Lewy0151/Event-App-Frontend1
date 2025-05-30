@@ -63,7 +63,7 @@ export default function CreateAd() {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Create New Advertisement</h1>
+      <h1 className="text-4xl font-bold text-purple-400 dark:text-purple mb-8">Create New Event</h1>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Title</label>
@@ -73,8 +73,8 @@ export default function CreateAd() {
             name="title" 
             value={formData.title} 
             onChange={handleChange} 
-            className={`w-full px-4 py-2 rounded-lg border ${errors.title ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'} bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent`} 
-            placeholder="Enter ad title" 
+            className={`w-full px-4 py-2 rounded-lg border ${errors.title ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'} bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent`} 
+            placeholder="Enter Event Title" 
           />
           {errors.title && (<p className="mt-1 text-sm text-red-500">{errors.title}</p>)}
         </div>
@@ -87,7 +87,7 @@ export default function CreateAd() {
             onChange={handleChange} 
             rows={4} 
             className={`w-full px-4 py-2 rounded-lg border ${errors.description ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'} bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent`} 
-            placeholder="Enter ad description" 
+            placeholder="Enter Description (eg. Location, Time, and Event Type)" 
           />
           {errors.description && (<p className="mt-1 text-sm text-red-500">{errors.description}</p>)}
         </div>
@@ -111,7 +111,7 @@ export default function CreateAd() {
         <button 
           type="submit" 
           disabled={loading} 
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-60"
+          className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-pink-700 transition-colors focus:outline-none focus:ring-2 focus:ring-white-500 focus:ring-offset-2 disabled:opacity-60"
         >
           {loading ? 'Creating...' : 'Create Advertisement'}
         </button>

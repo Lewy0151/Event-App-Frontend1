@@ -1,28 +1,31 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
-  
-  
-  
   return (
-  <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
-    {/* Hero Section */}
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-        Discover Hidden Events and <span className="text-blue-600 dark:text-purple-400">Grow Your Audience with Spare Seats for You!</span>
-      </h1>
-      <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-        Promote unsold seats and reach last-minute attendees with ease. Turn empty seats into new opportunities.
-      </p>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <button className="px-8 py-3 bg-purple-600 text-white rounded-full font-medium hover:bg-purple-700 transition-colors">
-          List Spare Seats
-        </button>
-        <button className="px-8 py-3 bg-white text-gray-900 rounded-full font-medium border border-gray-200 hover:bg-gray-50 transition-colors">
-          Explore Events
-        </button>
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+      {/* Hero Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+          Discover Hidden Events and <span className="text-blue-600 dark:text-purple-400">Grow Your Audience with Spare Seats for You!</span>
+        </h1>
+        <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+          Promote unsold seats and reach last-minute attendees with ease. Turn empty seats into new opportunities.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="/create"
+            className="px-8 py-3 bg-purple-600 text-white rounded-full font-medium hover:bg-purple-700 transition-colors text-center"
+          >
+            List Spare Seats
+          </Link>
+          <Link
+          href="/events" 
+          className="px-8 py-3 bg-white text-gray-900 rounded-full font-medium border border-gray-200 hover:bg-pink-700 transition-colors">
+            Explore Events
+          </Link>
+        </div>
       </div>
-    </div>
 
     {/* Features Section */}
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -65,14 +68,20 @@ export default function Home() {
         <p className="text-purple-100 mb-8 max-w-2xl mx-auto">
           Join hundreds of venues already monetizing spare capacity and reaching new audiences every day.
         </p>
-        <button className="px-8 py-3 bg-white text-purple-600 rounded-full font-medium hover:bg-gray-100 transition-colors">
-          Start Listing Now
-        </button>
+
+        <Link
+            href="/create"
+            className="px-8 py-3 bg-white text-purple-600 rounded-full font-medium hover:bg-pink-700 transition-colors">
+          Start Listing Now  
+          </Link>
+         
       </div>
     </div>
   </div>
 );
 }
+  
+  
   
   /*
   
