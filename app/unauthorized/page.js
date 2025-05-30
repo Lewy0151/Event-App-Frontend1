@@ -15,7 +15,7 @@ export default function UnauthorizedPage() {
           Please log in to access this page.
         </p>
         <button
-          onClick={() => router.push('/user')}
+          onClick={() => router.push('/')}
           className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors"
         >
           Go to Login

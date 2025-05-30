@@ -6,8 +6,8 @@ export class ApiClient {
     // Initialize axios with default headers
     this.axiosInstance = axios.create({
       headers: {
-        'Authorization': `Bearer ${this.getToken()}`
-      }
+        Authorization: `Bearer ${this.getToken()}`,
+      },
     });
 
     // Add request interceptor to ensure token is set for every request
@@ -15,7 +15,7 @@ export class ApiClient {
       (config) => {
         const token = this.getToken();
         if (token) {
-          config.headers['Authorization'] = `Bearer ${token}`;
+          config.headers["Authorization"] = `Bearer ${token}`;
         }
         return config;
       },
@@ -30,8 +30,8 @@ export class ApiClient {
       (error) => {
         if (error.response && error.response.status === 401) {
           this.removeToken();
-          if (typeof window !== 'undefined') {
-            window.location.href = '/unauthorized';
+          if (typeof window !== "undefined") {
+            window.location.href = "/unauthorized";
           }
         }
         return Promise.reject(error);
@@ -40,25 +40,25 @@ export class ApiClient {
   }
 
   getToken() {
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('authToken');
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("authToken");
       return token;
     }
     return null;
   }
 
   setToken(token) {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('authToken', token);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("authToken", token);
       // Update axios default headers
-      this.axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`;
+      this.axiosInstance.defaults.headers["Authorization"] = `Bearer ${token}`;
     }
   }
 
   removeToken() {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('authToken');
-      delete this.axiosInstance.defaults.headers['Authorization'];
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("authToken");
+      delete this.axiosInstance.defaults.headers["Authorization"];
     }
   }
 
@@ -76,11 +76,11 @@ export class ApiClient {
       });
       return response;
     } catch (error) {
-      console.error('API call error:', error.response || error); // Debug log
+      console.error("API call error:", error.response || error); // Debug log
       if (error.response && error.response.status === 401) {
         this.removeToken();
-        if (typeof window !== 'undefined') {
-          window.location.href = '/unauthorized';
+        if (typeof window !== "undefined") {
+          window.location.href = "/unauthorized";
         }
       }
       throw error;
@@ -100,15 +100,15 @@ export class ApiClient {
     try {
       const numericPrice = Number(price);
       if (isNaN(numericPrice)) {
-        throw new Error('Price must be a valid number');
+        throw new Error("Price must be a valid number");
       }
-      return this.apiCall("post", url + "events", { 
-        title, 
-        description, 
-        price: numericPrice 
+      return this.apiCall("post", url + "events", {
+        title,
+        description,
+        price: numericPrice,
       });
     } catch (error) {
-      console.error('addEvent error:', error.response || error); // Debug log
+      console.error("addEvent error:", error.response || error); // Debug log
       throw error;
     }
   }
@@ -118,18 +118,43 @@ export class ApiClient {
   }
 
   async updateEvent(id, title, description, price) {
-    return this.apiCall("put", `${url}events/${id}`, { title, description, price });
+    return this.apiCall("put", `${url}events/${id}`, {
+      title,
+      description,
+      price,
+    });
   }
 
   async login(email, password) {
     try {
-      const response = await this.apiCall("post", url + "auth/login", { email, password });
-      
+      const response = await this.apiCall("post", url + "auth/login", {
+        email,
+        password,
+      });
+
       if (response.data && response.data.token) {
         this.setToken(response.data.token);
         return response;
       } else {
-        throw new Error('No token received from server');
+        throw new Error("No token received from server");
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async register(email, password) {
+    try {
+      const response = await this.apiCall("post", url + "auth/register", {
+        email,
+        password,
+      });
+
+      if (response.data && response.data.token) {
+        this.setToken(response.data.token);
+        return response;
+      } else {
+        throw new Error("No token received from server");
       }
     } catch (error) {
       throw error;
@@ -138,8 +163,8 @@ export class ApiClient {
 
   logout() {
     this.removeToken();
-    if (typeof window !== 'undefined') {
-      window.location.href = '/user';
+    if (typeof window !== "undefined") {
+      window.location.href = "/user";
     }
   }
 }
